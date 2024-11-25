@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pan.direct.account;
+option go_package = "github.com/lctech-tw/pan-direct-proto/dist/go/pan/direct/account_proto";
+option java_package = "pan.direct.account";
+option java_outer_classname = "JpassUpgraderCommandPb";
+
+service JpassUpgraderCommand {
+  rpc CreateJPassUpgradeToken (CreateJPassUpgradeTokenPayload) returns (CreateJPassUpgradeTokenAnswer);
+}
+
+message CreateJPassUpgradeTokenPayload {
+  string pan_app_code = 1; // 必填。
+  string app_member_id = 2; // 必填。jvid的場合，會是jvid的uid。
+  string app_member_phone = 3;
+  string app_member_email = 4;
+  string app_member_name = 5; // 必填。jvid的場合，會是channel name。
+}
+
+message CreateJPassUpgradeTokenAnswer {
+  string jpass_upgrade_token = 1;
+}
